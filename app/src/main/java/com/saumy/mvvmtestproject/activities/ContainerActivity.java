@@ -8,6 +8,14 @@ import com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragment;
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.databinding.ActivityContainerBinding;
+import com.saumy.mvvmtestproject.retrofit.RemoteServices;
+
+import javax.inject.Inject;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ContainerActivity extends AppCompatActivity {
 
@@ -19,7 +27,6 @@ public class ContainerActivity extends AppCompatActivity {
         mActivityContainerBinding = DataBindingUtil.setContentView(this, R.layout.activity_container);
         ((MyApp)getApplicationContext()).getComponent().inject(this);
         addHomeFragment();
-
     }
 
     /**

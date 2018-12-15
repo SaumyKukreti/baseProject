@@ -5,5 +5,5 @@ package com.saumy.mvvmtestproject.constants;
  */
 
 public interface ApiConstants {
-    public static String BASE_URL = "";
+    public static String BASE_URL = "https://www.google.com";
 }
