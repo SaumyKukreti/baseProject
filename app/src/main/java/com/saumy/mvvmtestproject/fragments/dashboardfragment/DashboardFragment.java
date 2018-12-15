@@ -1,14 +1,14 @@
-package com.saumy.mvvmtestproject;
+package com.saumy.mvvmtestproject.fragments.dashboardfragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
 
 import static android.databinding.DataBindingUtil.inflate;

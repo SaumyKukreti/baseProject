@@ -1,9 +1,12 @@
-package com.saumy.mvvmtestproject;
+package com.saumy.mvvmtestproject.activities;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragment;
+import com.saumy.mvvmtestproject.MyApp;
+import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.databinding.ActivityContainerBinding;
 
 public class ContainerActivity extends AppCompatActivity {

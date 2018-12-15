@@ -1,4 +1,4 @@
-package com.saumy.mvvmtestproject;
+package com.saumy.mvvmtestproject.fragments.dashboardfragment;
 
 import android.arch.lifecycle.ViewModel;
 

@@ -1,6 +1,6 @@
 package com.saumy.mvvmtestproject.dagger;
 
-import com.saumy.mvvmtestproject.ContainerActivity;
+import com.saumy.mvvmtestproject.activities.ContainerActivity;
 
 import javax.inject.Singleton;
 
