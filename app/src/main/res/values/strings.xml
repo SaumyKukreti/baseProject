@@ -3,4 +3,23 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank awefawefwefragment</string>
+
+    <!--Home fragment-->
+    <string name="choose_card">Choose a card to scan</string>
+    <string name="continue_button">Continue</string>
+
+    <!--Image Chooser-->
+    <string name="choose_one_option_to_select_image">Choose one of the below options</string>
+    <string name="choose_from_gallery">Pick from gallery</string>
+    <string name="choose_from_camera">Take new pic</string>
+    <string name="permission_required">Permission is required to proceed</string>
+
+    <!--Result fragment-->
+    <string name="results">Result of scan</string>
+    <string name="first_name">First name:</string>
+    <string name="last_name">Last name:</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="expiry_date">Expiry date:</string>
+    <string name="gender">Gender:</string>
 </resources>
+

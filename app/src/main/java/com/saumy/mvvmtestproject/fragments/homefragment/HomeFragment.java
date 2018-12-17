@@ -1,23 +1,30 @@
-package com.saumy.mvvmtestproject.fragments.dashboardfragment;
+package com.saumy.mvvmtestproject.fragments.homefragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SimpleAdapter;
 
 import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
+import com.saumy.mvvmtestproject.models.Card;
+import com.saumy.mvvmtestproject.utils.CardManager;
+
+import java.util.List;
 
 import static android.databinding.DataBindingUtil.inflate;
 
-public class DashboardFragment extends Fragment {
+public class HomeFragment extends Fragment implements HomeFragmentClickListener{
 
     FragmentDashboardBinding mFragmentDashboardBinding;
+    private List<Card> mListOfCards;
 
-    public DashboardFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -25,10 +32,10 @@ public class DashboardFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment DashboardFragment.
+     * @return A new instance of fragment HomeFragment.
      */
-    public static DashboardFragment newInstance() {
-        DashboardFragment fragment = new DashboardFragment();
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         //Pass the arguments here
         fragment.setArguments(args);
@@ -41,6 +48,29 @@ public class DashboardFragment extends Fragment {
         if (getArguments() != null) {
             //Set the arguments here
         }
+
+        mListOfCards = CardManager.getListOfCards();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        initialise();
+    }
+
+    /**
+     * This method is used to initialise the screen
+     */
+    private void initialise() {
+        setUpSpinner();
+    }
+
+    /**
+     * This method is used to set up spinner
+     */
+    private void setUpSpinner() {
+//        mFragmentDashboardBinding.spinnerCard.setAdapter(new SimpleAdapter(this, mListOfCards));
     }
 
     @Override
@@ -60,5 +90,13 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+
+
+    /******************************Click Listners*******************************/
+    @Override
+    public void continueClicked() {
+
     }
 }

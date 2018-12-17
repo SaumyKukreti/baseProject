@@ -5,21 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Transition;
 import android.util.Log;
 
-import com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragment;
+import com.saumy.mvvmtestproject.fragments.homefragment.HomeFragment;
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.databinding.ActivityContainerBinding;
-import com.saumy.mvvmtestproject.retrofit.RemoteServices;
-
-import javax.inject.Inject;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ContainerActivity extends AppCompatActivity {
 
@@ -39,15 +30,21 @@ public class ContainerActivity extends AppCompatActivity {
      */
     private void addHomeFragment() {
         //Creating a dashboard fragment
-        DashboardFragment dashboardFragment = DashboardFragment.newInstance();
+        HomeFragment dashboardFragment = HomeFragment.newInstance();
         pushFragment(dashboardFragment, true, false);
     }
 
-    public void pushFragment(Fragment fragment, boolean add, boolean addToBackStack) {
+    /**
+     * This method is ued to add/replace a fragment
+     * @param fragment - Pass the fragment here
+     * @param isAdd -  Pass true to add a fragment, false to replace
+     * @param addToBackStack - Pass true to add the current transaction in the backstack
+     */
+    public void pushFragment(Fragment fragment, boolean isAdd, boolean addToBackStack) {
         if (null != fragment && null != getSupportFragmentManager()) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-            if (add)
+            if (isAdd)
                 transaction.add(R.id.fragment_container, fragment);
             else
                 transaction.replace(R.id.fragment_container, fragment);
