@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
 
 import static android.databinding.DataBindingUtil.inflate;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements DashboardFragmentListener {
 
+    private static final String TAG = DashboardFragment.class.getSimpleName();
     FragmentDashboardBinding mFragmentDashboardBinding;
+    private DashboardFragmentListener mListener;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -49,16 +52,30 @@ public class DashboardFragment extends Fragment {
 
         // Inflate the layout for this fragment
         mFragmentDashboardBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_dashboard, container, false);
+
+        mFragmentDashboardBinding.setListener(this);
         return mFragmentDashboardBinding.getRoot();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof DashboardFragmentListener) {
+            mListener = (DashboardFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void findBaggageClicked() {
+        //Going to findBaggageFragment
+        mListener.findBaggageClicked();
     }
 }

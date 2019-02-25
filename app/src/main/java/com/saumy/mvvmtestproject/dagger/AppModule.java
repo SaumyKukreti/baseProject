@@ -6,6 +6,8 @@ import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.constants.ApiConstants;
 import com.saumy.mvvmtestproject.retrofit.RemoteServices;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -20,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class AppModule {
 
+    @Singleton
     @Provides
     RemoteServices getRemoteServices(){
         //Creating an HttpClient.Builder to attach interceptors

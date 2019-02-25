@@ -5,23 +5,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Transition;
 import android.util.Log;
 
 import com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragment;
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.databinding.ActivityContainerBinding;
-import com.saumy.mvvmtestproject.retrofit.RemoteServices;
+import com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragmentListener;
+import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
+import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageListener;
 
-import javax.inject.Inject;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class ContainerActivity extends AppCompatActivity {
+public class ContainerActivity extends AppCompatActivity implements DashboardFragmentListener, FindBaggageListener {
 
     private static final String TAG = ContainerActivity.class.getSimpleName();
     ActivityContainerBinding mActivityContainerBinding;
@@ -61,7 +55,19 @@ public class ContainerActivity extends AppCompatActivity {
         }
     }
 
-    public void openFragment() {
+    @Override
+    public void findBaggageClicked() {
+        //Going to find baggage fragment
+        pushFragment(FindBaggageFragment.newInstance(), true, true);
+    }
+
+    @Override
+    public void searchBagByIdClicked() {
+
+    }
+
+    @Override
+    public void searchBagByNameClicked() {
 
     }
 }
