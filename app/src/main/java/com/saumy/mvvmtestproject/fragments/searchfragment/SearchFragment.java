@@ -3,16 +3,12 @@ package com.saumy.mvvmtestproject.fragments.searchfragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
@@ -85,6 +81,9 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     @Override
     public void startSearch() {
         String searchText = mFragmentSearchBinding.editSearch.getText().toString();
-        mViewModel.getBags(mRemoteServices, searchText);
+        if(mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID)
+        mViewModel.getBagsById(mRemoteServices, searchText);
+        else
+            mViewModel.getBagsByName(mRemoteServices, searchText);
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Url;
 
 /**
@@ -15,6 +16,10 @@ import retrofit2.http.Url;
 
 public interface RemoteServices {
 
-    @GET("/bags")
-    Call<List<Bag>> genericCall ();
+    @GET("/bags/id/{id}")
+    Call<List<Bag>> getBagsById(@Path("id") String id);
+
+
+    @GET("/bags/name/{name}")
+    Call<List<Bag>> getBagsByName(@Path("name") String name);
 }
