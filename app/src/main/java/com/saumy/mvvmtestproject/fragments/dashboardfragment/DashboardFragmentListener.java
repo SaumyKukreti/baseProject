@@ -6,4 +6,5 @@ package com.saumy.mvvmtestproject.fragments.dashboardfragment;
 
 public interface DashboardFragmentListener {
     void findBaggageClicked();
+    void manageFragmentClicked();
 }

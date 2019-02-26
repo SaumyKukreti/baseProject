@@ -8,6 +8,4 @@ package com.saumy.mvvmtestproject.fragments.findbaggagefragment;
 public interface FindBaggageListener {
     void searchBagByIdClicked();
     void searchBagByNameClicked();
-    void generateNewRecord();
-    void deleteAllRecords();
 }

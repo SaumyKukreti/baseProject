@@ -1,0 +1,55 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.saumy.mvvmtestproject.fragments.managefragment.ManageFragmentListener"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:clickable="true"
+                                                 android:focusable="true"
+                                                 android:background="@android:color/white"
+                                                 tools:context="com.saumy.mvvmtestproject.fragments.managefragment.ManageFragment">
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Delete All Records"
+            android:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="@{() -> listener.deleteAllRecords()}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/button_generate_new_record"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <Button
+            android:id="@+id/button_generate_new_record"
+            android:layout_width="0dp"
+            android:onClick="@{() -> listener.generateNewRecord()}"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Generate New Record"
+            android:textAllCaps="false"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/button_delete"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/button_delete"
+            app:layout_constraintTop_toBottomOf="@+id/button_delete"/>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

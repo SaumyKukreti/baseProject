@@ -2,12 +2,6 @@ package com.saumy.mvvmtestproject.activities;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,7 +16,7 @@ import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.databinding.ActivityNavigationDrawerBinding;
 import com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragment;
 
-public class NavigationDrawerActivity extends AppCompatActivity
+public class NavigationDrawerActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = NavigationDrawerActivity.class.getSimpleName();
@@ -55,25 +49,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
     private void addHomeFragment() {
         //Creating a dashboard fragment
         DashboardFragment dashboardFragment = DashboardFragment.newInstance();
-        pushFragment(dashboardFragment, true, false);
-    }
-
-    public void pushFragment(Fragment fragment, boolean add, boolean addToBackStack) {
-        if (null != fragment && null != getSupportFragmentManager()) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-            if (add)
-                transaction.add(R.id.fragment_container, fragment);
-            else
-                transaction.replace(R.id.fragment_container, fragment);
-
-            if (addToBackStack)
-                transaction.addToBackStack(fragment.getClass().getSimpleName());
-
-            transaction.commitAllowingStateLoss();
-        } else {
-            Log.e(TAG, "Passed fragment is null!");
-        }
+        pushFragment(R.id.fragment_container, dashboardFragment, true, false);
     }
 
     private void setUpToolbar() {

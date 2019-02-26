@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
+import com.saumy.mvvmtestproject.activities.BaseActivity;
 import com.saumy.mvvmtestproject.activities.NavigationDrawerActivity;
 import com.saumy.mvvmtestproject.constants.AppConstants;
 import com.saumy.mvvmtestproject.databinding.FragmentFindBaggageBinding;
@@ -57,6 +58,7 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
         // Inflate the layout for this fragment
         FragmentFindBaggageBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_find_baggage,
                 container, false);
+
         binding.setListener(this);
         return binding.getRoot();
     }
@@ -72,47 +74,11 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
      * @param searchById
      */
     private void startSearch(AppConstants.SEARCH_BY searchById) {
-        ((NavigationDrawerActivity) getActivity()).pushFragment(SearchFragment.newInstance(searchById), true, true);
+        ((BaseActivity) getActivity()).pushFragment(R.id.fragment_container, SearchFragment.newInstance(searchById), true, true);
     }
 
     @Override
     public void searchBagByNameClicked() {
         startSearch(AppConstants.SEARCH_BY.SEARCH_BY_NAME);
     }
-
-    @Override
-    public void generateNewRecord() {
-        mRemoteServices.generateBag().enqueue(new Callback<Bag>() {
-            @Override
-            public void onResponse(Call<Bag> call, Response<Bag> response) {
-                if (null != response && null != response.body()) {
-                    Toast.makeText(getContext(), "New bag created:\n" + response.body(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Bag> call, Throwable t) {
-
-            }
-        });
-    }
-
-    @Override
-    public void deleteAllRecords() {
-        mRemoteServices.deleteAllBags().enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "All records successfully deleted", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
-    }
-
-
 }

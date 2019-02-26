@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.saumy.mvvmtestproject.R;
+import com.saumy.mvvmtestproject.activities.BaseActivity;
 import com.saumy.mvvmtestproject.activities.NavigationDrawerActivity;
 import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
+import com.saumy.mvvmtestproject.fragments.managefragment.ManageFragment;
 
 public class DashboardFragment extends Fragment implements DashboardFragmentListener {
 
@@ -57,6 +59,11 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
     @Override
     public void findBaggageClicked() {
         //Going to findBaggageFragment
-        ((NavigationDrawerActivity) getContext()).pushFragment(FindBaggageFragment.newInstance(),true,true);
+        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container,FindBaggageFragment.newInstance(),true,true);
+    }
+
+    @Override
+    public void manageFragmentClicked() {
+        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ManageFragment.newInstance(),true,true);
     }
 }
