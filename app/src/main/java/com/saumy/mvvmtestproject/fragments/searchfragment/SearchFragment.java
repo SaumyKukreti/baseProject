@@ -105,8 +105,18 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     }
 
     private void setAdapter(List<Bag> bags) {
-        SearchResultsAdapter adapter = new SearchResultsAdapter(getContext(), bags);
-        mFragmentSearchBinding.recyclerViewItems.setLayoutManager(new LinearLayoutManager(getContext()));
-        mFragmentSearchBinding.recyclerViewItems.setAdapter(adapter);
+        if(bags == null || bags.isEmpty()) {
+            mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.VISIBLE);
+            mFragmentSearchBinding.recyclerViewItems.setVisibility(View.GONE);
+            mFragmentSearchBinding.textNoResultAvailable.setText("No Results Found!!");
+        }
+        else{
+            mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.GONE);
+            SearchResultsAdapter adapter = new SearchResultsAdapter(getContext(), bags);
+            mFragmentSearchBinding.recyclerViewItems.setVisibility(View.VISIBLE);
+            mFragmentSearchBinding.recyclerViewItems.setLayoutManager(new LinearLayoutManager(getContext()));
+            mFragmentSearchBinding.recyclerViewItems.setAdapter(adapter);
+        }
+
     }
 }
