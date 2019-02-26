@@ -71,4 +71,15 @@ public class Bag {
     }
 
 
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Id:"+this.getId()).append("\n");
+        str.append("FirstName:"+this.getFirstName()).append("\n");
+        str.append("LastName:"+this.getLastName()).append("\n");
+        str.append("BagTag:"+this.getBagTag()).append("\n");
+        str.append("Status:"+this.getStatus()).append("\n");
+        str.append("Fallback Tag:"+this.getFallbackTag()).append("\n");
+        return str.toString();
+    }
 }

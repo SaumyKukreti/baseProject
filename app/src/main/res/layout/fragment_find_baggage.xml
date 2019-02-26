@@ -58,6 +58,21 @@
             app:layout_constraintTop_toBottomOf="@+id/button_search_by_bag_id"
             android:text="Serach By Name"/>
 
+
+        <Button
+            android:id="@+id/button_generate_new_record"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/button_search_by_bag_id"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constrainedWidth="true"
+            android:textAllCaps="false"
+            android:onClick="@{() -> listener.generateNewRecord()}"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toStartOf="@id/button_search_by_bag_id"
+            android:text="Generate New Record"/>
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>

@@ -70,4 +70,9 @@ public class ContainerActivity extends AppCompatActivity implements DashboardFra
     public void searchBagByNameClicked() {
 
     }
+
+    @Override
+    public void generateNewRecord() {
+
+    }
 }

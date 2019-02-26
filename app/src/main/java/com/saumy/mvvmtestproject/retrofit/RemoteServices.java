@@ -22,4 +22,7 @@ public interface RemoteServices {
 
     @GET("/bags/name/{name}")
     Call<List<Bag>> getBagsByName(@Path("name") String name);
+
+    @GET("/generate")
+    Call<Bag> generateBag();
 }

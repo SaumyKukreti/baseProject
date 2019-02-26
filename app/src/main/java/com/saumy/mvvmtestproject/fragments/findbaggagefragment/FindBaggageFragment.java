@@ -9,15 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.activities.ContainerActivity;
 import com.saumy.mvvmtestproject.constants.AppConstants;
 import com.saumy.mvvmtestproject.databinding.FragmentFindBaggageBinding;
 import com.saumy.mvvmtestproject.fragments.searchfragment.SearchFragment;
+import com.saumy.mvvmtestproject.models.Bag;
+import com.saumy.mvvmtestproject.retrofit.RemoteServices;
+
+import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class FindBaggageFragment extends Fragment implements FindBaggageListener{
 
+
+    @Inject
+    RemoteServices mRemoteServices;
 
     private FindBaggageListener mListener;
 
@@ -38,6 +50,7 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
         if (getArguments() != null) {
 
         }
+        MyApp.getInstance().getComponent().inject(this);
     }
 
     @Override
@@ -84,5 +97,22 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
     @Override
     public void searchBagByNameClicked() {
         startSearch(AppConstants.SEARCH_BY.SEARCH_BY_NAME);
+    }
+
+    @Override
+    public void generateNewRecord() {
+        mRemoteServices.generateBag().enqueue(new Callback<Bag>() {
+            @Override
+            public void onResponse(Call<Bag> call, Response<Bag> response) {
+                if(null != response && null != response.body()){
+                    Toast.makeText(getContext(), "New bag created:\n"+response.body(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Bag> call, Throwable t) {
+
+            }
+        });
     }
 }
