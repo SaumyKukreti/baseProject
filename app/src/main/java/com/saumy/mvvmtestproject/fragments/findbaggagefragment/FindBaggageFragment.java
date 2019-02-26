@@ -1,6 +1,5 @@
 package com.saumy.mvvmtestproject.fragments.findbaggagefragment;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,13 +25,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class FindBaggageFragment extends Fragment implements FindBaggageListener{
+public class FindBaggageFragment extends Fragment implements FindBaggageListener {
 
 
     @Inject
     RemoteServices mRemoteServices;
-
-    private FindBaggageListener mListener;
 
     public FindBaggageFragment() {
         // Required empty public constructor
@@ -64,24 +61,6 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
         return binding.getRoot();
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof FindBaggageListener) {
-            mListener = (FindBaggageListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
     @Override
     public void searchBagByIdClicked() {
         startSearch(AppConstants.SEARCH_BY.SEARCH_BY_ID);
@@ -89,10 +68,11 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
 
     /**
      * This method is used to open search fragment
+     *
      * @param searchById
      */
     private void startSearch(AppConstants.SEARCH_BY searchById) {
-        ((ContainerActivity)getActivity()).pushFragment(SearchFragment.newInstance(searchById),true,true);
+        ((ContainerActivity) getActivity()).pushFragment(SearchFragment.newInstance(searchById), true, true);
     }
 
     @Override
@@ -105,8 +85,8 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
         mRemoteServices.generateBag().enqueue(new Callback<Bag>() {
             @Override
             public void onResponse(Call<Bag> call, Response<Bag> response) {
-                if(null != response && null != response.body()){
-                    Toast.makeText(getContext(), "New bag created:\n"+response.body(), Toast.LENGTH_SHORT).show();
+                if (null != response && null != response.body()) {
+                    Toast.makeText(getContext(), "New bag created:\n" + response.body(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -122,7 +102,7 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
         mRemoteServices.deleteAllBags().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "All records successfully deleted", Toast.LENGTH_SHORT).show();
                 }
             }

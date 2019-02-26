@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.saumy.mvvmtestproject.R;
+import com.saumy.mvvmtestproject.activities.ContainerActivity;
 import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
+import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
 
 import static android.databinding.DataBindingUtil.inflate;
 
@@ -18,7 +20,6 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
 
     private static final String TAG = DashboardFragment.class.getSimpleName();
     FragmentDashboardBinding mFragmentDashboardBinding;
-    private DashboardFragmentListener mListener;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -58,24 +59,8 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof DashboardFragmentListener) {
-            mListener = (DashboardFragmentListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    @Override
     public void findBaggageClicked() {
         //Going to findBaggageFragment
-        mListener.findBaggageClicked();
+        ((ContainerActivity) getContext()).pushFragment(FindBaggageFragment.newInstance(),true,true);
     }
 }

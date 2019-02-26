@@ -15,7 +15,7 @@ import com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragmentLi
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageListener;
 
-public class ContainerActivity extends AppCompatActivity implements DashboardFragmentListener, FindBaggageListener {
+public class ContainerActivity extends AppCompatActivity {
 
     private static final String TAG = ContainerActivity.class.getSimpleName();
     ActivityContainerBinding mActivityContainerBinding;
@@ -53,31 +53,5 @@ public class ContainerActivity extends AppCompatActivity implements DashboardFra
         } else {
             Log.e(TAG, "Passed fragment is null!");
         }
-    }
-
-    @Override
-    public void findBaggageClicked() {
-        //Going to find baggage fragment
-        pushFragment(FindBaggageFragment.newInstance(), true, true);
-    }
-
-    @Override
-    public void searchBagByIdClicked() {
-
-    }
-
-    @Override
-    public void searchBagByNameClicked() {
-
-    }
-
-    @Override
-    public void generateNewRecord() {
-
-    }
-
-    @Override
-    public void deleteAllRecords() {
-
     }
 }
