@@ -11,6 +11,7 @@ import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.activities.BaseActivity;
 import com.saumy.mvvmtestproject.activities.NavigationDrawerActivity;
 import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
+import com.saumy.mvvmtestproject.fragments.ChartFragment;
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
 import com.saumy.mvvmtestproject.fragments.managefragment.ManageFragment;
 
@@ -65,5 +66,10 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
     @Override
     public void manageFragmentClicked() {
         ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ManageFragment.newInstance(),true,true);
+    }
+
+    @Override
+    public void chartFragmentClicked() {
+        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ChartFragment.newInstance(),true,true);
     }
 }

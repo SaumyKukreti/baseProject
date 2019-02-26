@@ -1,6 +1,7 @@
 package com.saumy.mvvmtestproject.dagger;
 
 import com.saumy.mvvmtestproject.activities.NavigationDrawerActivity;
+import com.saumy.mvvmtestproject.fragments.ChartFragment;
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
 import com.saumy.mvvmtestproject.fragments.managefragment.ManageFragment;
 import com.saumy.mvvmtestproject.fragments.searchfragment.SearchFragment;
@@ -21,4 +22,5 @@ public interface ApplicationComponent {
     void inject(FindBaggageFragment findBaggageFragment);
     void inject(NavigationDrawerActivity navigationDrawerActivity);
     void inject(ManageFragment manageFragment);
+    void inject(ChartFragment chartFragment);
 }

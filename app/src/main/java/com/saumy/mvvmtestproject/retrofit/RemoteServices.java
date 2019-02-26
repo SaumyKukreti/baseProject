@@ -28,4 +28,7 @@ public interface RemoteServices {
 
     @GET("/delete")
     Call<ResponseBody> deleteAllBags();
+
+    @GET("/bags")
+    Call<List<Bag>> getAllBags();
 }
