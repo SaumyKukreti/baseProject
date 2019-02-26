@@ -5,5 +5,5 @@ package com.saumy.mvvmtestproject.constants;
  */
 
 public interface ApiConstants {
-    public static String BASE_URL = "http://192.168.8.47:8081";
+    public static String BASE_URL = "http://192.168.43.116:8081";
 }

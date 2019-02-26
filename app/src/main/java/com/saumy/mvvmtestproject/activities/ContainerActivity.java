@@ -75,4 +75,9 @@ public class ContainerActivity extends AppCompatActivity implements DashboardFra
     public void generateNewRecord() {
 
     }
+
+    @Override
+    public void deleteAllRecords() {
+
+    }
 }

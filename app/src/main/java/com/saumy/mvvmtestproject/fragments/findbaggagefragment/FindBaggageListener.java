@@ -9,4 +9,5 @@ public interface FindBaggageListener {
     void searchBagByIdClicked();
     void searchBagByNameClicked();
     void generateNewRecord();
+    void deleteAllRecords();
 }
