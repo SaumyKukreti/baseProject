@@ -1,20 +1,16 @@
 package com.saumy.mvvmtestproject.fragments.dashboardfragment;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.saumy.mvvmtestproject.R;
-import com.saumy.mvvmtestproject.activities.ContainerActivity;
+import com.saumy.mvvmtestproject.activities.NavigationDrawerActivity;
 import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
-
-import static android.databinding.DataBindingUtil.inflate;
 
 public class DashboardFragment extends Fragment implements DashboardFragmentListener {
 
@@ -61,6 +57,6 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
     @Override
     public void findBaggageClicked() {
         //Going to findBaggageFragment
-        ((ContainerActivity) getContext()).pushFragment(FindBaggageFragment.newInstance(),true,true);
+        ((NavigationDrawerActivity) getContext()).pushFragment(FindBaggageFragment.newInstance(),true,true);
     }
 }

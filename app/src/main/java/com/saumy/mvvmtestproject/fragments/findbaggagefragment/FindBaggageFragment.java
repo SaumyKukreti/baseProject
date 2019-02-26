@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
-import com.saumy.mvvmtestproject.activities.ContainerActivity;
+import com.saumy.mvvmtestproject.activities.NavigationDrawerActivity;
 import com.saumy.mvvmtestproject.constants.AppConstants;
 import com.saumy.mvvmtestproject.databinding.FragmentFindBaggageBinding;
 import com.saumy.mvvmtestproject.fragments.searchfragment.SearchFragment;
@@ -72,7 +72,7 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
      * @param searchById
      */
     private void startSearch(AppConstants.SEARCH_BY searchById) {
-        ((ContainerActivity) getActivity()).pushFragment(SearchFragment.newInstance(searchById), true, true);
+        ((NavigationDrawerActivity) getActivity()).pushFragment(SearchFragment.newInstance(searchById), true, true);
     }
 
     @Override
