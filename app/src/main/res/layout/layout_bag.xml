@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="com.saumy.mvvmtestproject.models.Bag"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/text_bag_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@{model.id}"
+            tools:text="Id: Id"/>
+
+        <TextView
+            android:id="@+id/text_bag_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/text_bag_id"
+            app:layout_constraintEnd_toEndOf="@id/text_bag_id"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/text_bag_id"
+            android:layout_marginTop="5dp"
+            android:text="@{model.bagTag}"
+            tools:text="bagtag"/>
+
+        <TextView
+            android:id="@+id/text_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/text_bag_id"
+            app:layout_constraintEnd_toEndOf="@id/text_bag_id"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/text_bag_tag"
+            android:layout_marginTop="5dp"
+            android:text="@{model.firstName}"
+            tools:text="Firstname"/>
+
+        <TextView
+            android:id="@+id/text_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/text_bag_id"
+            app:layout_constraintEnd_toEndOf="@id/text_bag_id"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/text_first_name"
+            android:layout_marginTop="5dp"
+            android:text="@{model.lastName}"
+            tools:text="LastName"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

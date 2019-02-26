@@ -16,7 +16,7 @@ import retrofit2.http.Url;
 
 public interface RemoteServices {
 
-    @GET("/bags/id/{id}")
+    @GET("/bags/bagid/{id}")
     Call<List<Bag>> getBagsById(@Path("id") String id);
 
 
