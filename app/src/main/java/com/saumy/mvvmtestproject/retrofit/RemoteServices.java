@@ -1,6 +1,7 @@
 package com.saumy.mvvmtestproject.retrofit;
 
 import com.saumy.mvvmtestproject.models.Bag;
+import com.saumy.mvvmtestproject.models.DeleteResponse;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface RemoteServices {
     Call<Bag> generateBag();
 
     @GET("/delete")
-    Call<ResponseBody> deleteAllBags();
+    Call<DeleteResponse> deleteAllBags();
 
     @GET("/bags")
     Call<List<Bag>> getAllBags();

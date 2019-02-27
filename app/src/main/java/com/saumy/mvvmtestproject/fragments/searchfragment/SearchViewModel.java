@@ -40,7 +40,7 @@ public class SearchViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<List<Bag>> call, Throwable t) {
-
+                Toast.makeText(MyApp.getInstance(), "Some error occurred!\nError description:"+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -59,7 +59,7 @@ public class SearchViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<List<Bag>> call, Throwable t) {
-
+                Toast.makeText(MyApp.getInstance(), "Some error occurred!\nError description:"+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

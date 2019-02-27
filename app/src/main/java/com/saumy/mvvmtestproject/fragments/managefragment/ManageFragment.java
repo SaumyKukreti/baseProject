@@ -3,6 +3,7 @@ package com.saumy.mvvmtestproject.fragments.managefragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.Toast;
 
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
+import com.saumy.mvvmtestproject.Utils;
 import com.saumy.mvvmtestproject.databinding.FragmentManageBinding;
 import com.saumy.mvvmtestproject.models.Bag;
+import com.saumy.mvvmtestproject.models.DeleteResponse;
 import com.saumy.mvvmtestproject.retrofit.RemoteServices;
 
 import javax.inject.Inject;
@@ -23,6 +26,7 @@ import retrofit2.Response;
 
 public class ManageFragment extends Fragment implements ManageFragmentListener {
 
+    private static final String TAG = ManageFragment.class.getSimpleName();
     @Inject
     RemoteServices mRemoteServices;
 
@@ -76,17 +80,20 @@ public class ManageFragment extends Fragment implements ManageFragmentListener {
 
     @Override
     public void deleteAllRecords() {
-        mRemoteServices.deleteAllBags().enqueue(new Callback<ResponseBody>() {
+        mRemoteServices.deleteAllBags().enqueue(new Callback<DeleteResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "All records successfully deleted", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
+                if(null != response && null != response.body()) {
+                    Toast.makeText(getContext(), response.body().getRowsDeleted()+" Rows successfully deleted!!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Log.e(TAG, "Null response received for delete bags api!!");
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+            public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Some error occurred!\nError description:"+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
