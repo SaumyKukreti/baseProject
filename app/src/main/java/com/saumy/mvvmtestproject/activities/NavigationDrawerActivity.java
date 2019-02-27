@@ -53,8 +53,8 @@ public class NavigationDrawerActivity extends BaseActivity
     }
 
     private void setUpToolbar() {
-
         Toolbar toolbar = mBinding.appBarNavigationDrawer.toolbar;
+        toolbar.setTitle("Siemens BHS");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = mBinding.drawerLayout;

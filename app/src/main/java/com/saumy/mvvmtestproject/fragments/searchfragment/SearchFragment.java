@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
@@ -70,6 +73,17 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setUpViews();
+    }
+
+    private void setUpViews() {
+        mFragmentSearchBinding.editSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                startSearch();
+                return true;
+            }
+        });
     }
 
 
@@ -87,12 +101,17 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     @Override
     public void startSearch() {
         String searchText = mFragmentSearchBinding.editSearch.getText().toString();
-        if (mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID)
-            mViewModel.getBagsById(mRemoteServices, searchText);
-        else
-            mViewModel.getBagsByName(mRemoteServices, searchText);
+        if(null !=searchText && !searchText.isEmpty()) {
+            if (mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID)
+                mViewModel.getBagsById(mRemoteServices, searchText);
+            else
+                mViewModel.getBagsByName(mRemoteServices, searchText);
 
-        setObserverOnList();
+            setObserverOnList();
+        }
+        else{
+            Toast.makeText(getContext(), "Please enter something!!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setObserverOnList() {

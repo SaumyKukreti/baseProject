@@ -12,66 +12,74 @@
                                                  xmlns:tools="http://schemas.android.com/tools"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
+                                                 android:background="@android:color/white"
+                                                 android:clickable="true"
+                                                 android:focusable="true"
                                                  tools:context="com.saumy.mvvmtestproject.fragments.dashboardfragment.DashboardFragment">
 
 
-        <TextView
-            android:id="@+id/text_dashboard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BHS Home"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/button_search_bag"
+        <ImageView
+            android:id="@+id/image_siemens"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/siemens_logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
             android:id="@+id/button_search_bag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/button_selector"
             android:onClick="@{() -> listener.findBaggageClicked()}"
             android:text="Find Baggage!"
             android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/button_view_status"
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_dashboard"/>
+            app:layout_constraintTop_toBottomOf="@+id/image_siemens"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
         <Button
             android:id="@+id/button_view_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
             android:layout_marginTop="20dp"
+            android:onClick="@{() -> listener.chartFragmentClicked()}"
             android:text="View Current Status!"
             android:textAllCaps="false"
-            android:onClick="@{() -> listener.chartFragmentClicked()}"
-
+            android:background="@drawable/button_selector"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/button_search_bag"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/button_search_bag"
             app:layout_constraintTop_toBottomOf="@+id/button_search_bag"/>
 
         <Button
             android:id="@+id/button_manage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/button_selector"
+            android:onClick="@{() -> listener.manageFragmentClicked()}"
             android:text="Manage Baggage!"
             android:textAllCaps="false"
-            android:onClick="@{() -> listener.manageFragmentClicked()}"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/button_search_bag"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/button_search_bag"
             app:layout_constraintTop_toBottomOf="@+id/button_view_status"/>
-
 
     </android.support.constraint.ConstraintLayout>
 

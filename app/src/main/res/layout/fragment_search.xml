@@ -20,11 +20,15 @@
             android:id="@+id/text_no_result_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_search"
+            android:text="Please search for something, \nthen press go!"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="Please search for something, then press go!"/>
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_search"/>
 
         <EditText
             android:id="@+id/edit_search"
@@ -32,6 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:hint="Search here!"
+            android:background="@drawable/edit_text_outline"
+            android:singleLine="true"
+            android:padding="10dp"
             android:maxLines="1"
             app:layout_constraintEnd_toStartOf="@id/button_search"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +50,11 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> listener.startSearch()}"
             android:text="Go"
+            android:textAllCaps="false"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/button_selector"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/edit_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/edit_search"/>

@@ -125,7 +125,7 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
         xaxis.setLabelRotationAngle(90);
         xaxis.mLabelRotatedHeight = 100;
         xaxis.setTextSize(10f);
-        xaxis.setTextColor(Color.RED);
+        xaxis.setTextColor(Color.BLUE);
         xaxis.setDrawAxisLine(true);
         xaxis.setDrawGridLines(false);
         xaxis.setGranularity(1);

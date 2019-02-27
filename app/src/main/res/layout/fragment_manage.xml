@@ -11,9 +11,9 @@
                                                  xmlns:tools="http://schemas.android.com/tools"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
+                                                 android:background="@android:color/white"
                                                  android:clickable="true"
                                                  android:focusable="true"
-                                                 android:background="@android:color/white"
                                                  tools:context="com.saumy.mvvmtestproject.fragments.managefragment.ManageFragment">
 
         <Button
@@ -21,11 +21,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Delete All Records"
-            android:textAllCaps="false"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/button_selector"
             android:onClick="@{() -> listener.deleteAllRecords()}"
+            android:text="Delete All Records"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@+id/button_generate_new_record"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,18 +40,20 @@
         <Button
             android:id="@+id/button_generate_new_record"
             android:layout_width="0dp"
-            android:onClick="@{() -> listener.generateNewRecord()}"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/button_selector"
+            android:onClick="@{() -> listener.generateNewRecord()}"
             android:text="Generate New Record"
             android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/button_delete"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@id/button_delete"
             app:layout_constraintTop_toBottomOf="@+id/button_delete"/>
-
 
 
     </android.support.constraint.ConstraintLayout>
