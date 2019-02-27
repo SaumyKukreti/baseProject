@@ -1,6 +1,7 @@
 package com.saumy.mvvmtestproject.fragments;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,10 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -114,6 +119,18 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
 
         if(null != chart)
         chart.setData(barData);
+
+        XAxis xaxis = chart.getXAxis();
+        xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xaxis.setLabelRotationAngle(90);
+        xaxis.mLabelRotatedHeight = 100;
+        xaxis.setTextSize(10f);
+        xaxis.setTextColor(Color.RED);
+        xaxis.setDrawAxisLine(true);
+        xaxis.setDrawGridLines(false);
+        xaxis.setGranularity(1);
+//        xaxis.setCenterAxisLabels(true);
+        xaxis.setValueFormatter(new MyAxisFormatter(keys));
     }
 
     private HashMap<String, Integer> extractDataFromResponse(List<Bag> body) {
@@ -161,5 +178,19 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
     @Override
     public void onNothingSelected() {
 
+    }
+
+    class MyAxisFormatter extends ValueFormatter{
+
+        private List<String> mStringList;
+        public MyAxisFormatter(List<String> listOfStatus) {
+            mStringList = listOfStatus;
+        }
+
+
+        @Override
+        public String getFormattedValue(float value) {
+            return mStringList.get((int) value);
+        }
     }
 }
