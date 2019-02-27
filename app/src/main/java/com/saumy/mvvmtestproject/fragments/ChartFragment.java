@@ -78,14 +78,23 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
                     HashMap<String, Integer> map = extractDataFromResponse(response.body());
                     addValuesToChart(map);
                 }
+                else{
+                    showErrorText(true);
+                }
             }
 
             @Override
             public void onFailure(Call<List<Bag>> call, Throwable t) {
-
+                showErrorText(true);
             }
         });
     }
+
+    private void showErrorText(boolean showErrorText) {
+        mFragmentChartBinding.contentLoader.setVisibility(View.GONE);
+        mFragmentChartBinding.textNoResultAvailable.setVisibility(View.VISIBLE);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,20 +107,19 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initialiseChart();
-        configureChart();
+
     }
 
     private void addValuesToChart(HashMap<String, Integer> map) {
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        initialiseChart();
 
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
         ArrayList<String> keys = new ArrayList<>(map.keySet());
 
-        for(int i =0; i<keys.size();i++){
+        for(int i =0; i<keys.size();i++)
             barEntries.add(new BarEntry(i, map.get(keys.get(i))));
-        }
 
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Set1");
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Baggage details");
         barDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
 
         BarData barData = new BarData(barDataSet);
@@ -122,15 +130,16 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
 
         XAxis xaxis = chart.getXAxis();
         xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xaxis.setLabelRotationAngle(90);
-        xaxis.mLabelRotatedHeight = 100;
-        xaxis.setTextSize(10f);
-        xaxis.setTextColor(Color.BLUE);
+        xaxis.setLabelRotationAngle(45);
+        xaxis.mLabelRotatedHeight = 120;
+        xaxis.setTextSize(13f);
+        xaxis.setTextColor(getResources().getColor(R.color.colorPrimary));
         xaxis.setDrawAxisLine(true);
         xaxis.setDrawGridLines(false);
         xaxis.setGranularity(1);
-//        xaxis.setCenterAxisLabels(true);
         xaxis.setValueFormatter(new MyAxisFormatter(keys));
+
+        configureChart();
     }
 
     private HashMap<String, Integer> extractDataFromResponse(List<Bag> body) {
@@ -162,6 +171,9 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
 
         chart.setFitBars(true);
         // chart.setDrawYLabels(false);
+        chart.setVisibility(View.VISIBLE);
+        mFragmentChartBinding.contentLoader.setVisibility(View.GONE);
+        chart.setVisibility(View.VISIBLE);
     }
 
     private void initialiseChart() {
