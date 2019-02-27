@@ -73,7 +73,7 @@ public class ManageFragment extends Fragment implements ManageFragmentListener {
 
             @Override
             public void onFailure(Call<Bag> call, Throwable t) {
-
+                Toast.makeText(MyApp.getInstance(), "Some error occurred!\nError description:"+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

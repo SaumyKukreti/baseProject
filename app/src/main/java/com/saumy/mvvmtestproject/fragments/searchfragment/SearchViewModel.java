@@ -34,13 +34,16 @@ public class SearchViewModel extends ViewModel {
                     Log.e("TAGG", String.valueOf(response.body().size()));
                     bagLiveData.setValue(response.body());
                 }
-                else
+                else {
                     Toast.makeText(MyApp.getInstance(), "Null response", Toast.LENGTH_SHORT).show();
+                    bagLiveData.setValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<List<Bag>> call, Throwable t) {
                 Toast.makeText(MyApp.getInstance(), "Some error occurred!\nError description:"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                bagLiveData.setValue(null);
             }
         });
     }
@@ -53,13 +56,16 @@ public class SearchViewModel extends ViewModel {
                     bagLiveData.setValue(response.body());
                     Log.e("TAGG", String.valueOf(response.body().size()));
                 }
-                else
+                else {
                     Toast.makeText(MyApp.getInstance(), "Null response", Toast.LENGTH_SHORT).show();
+                    bagLiveData.setValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<List<Bag>> call, Throwable t) {
                 Toast.makeText(MyApp.getInstance(), "Some error occurred!\nError description:"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                bagLiveData.setValue(null);
             }
         });
     }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
@@ -27,7 +28,7 @@ public interface RemoteServices {
     @GET("/generate")
     Call<Bag> generateBag();
 
-    @GET("/delete")
+    @DELETE("/delete")
     Call<DeleteResponse> deleteAllBags();
 
     @GET("/bags")

@@ -1,6 +1,7 @@
 package com.saumy.mvvmtestproject.fragments.searchfragment;
 
 import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -101,21 +102,37 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     @Override
     public void startSearch() {
         String searchText = mFragmentSearchBinding.editSearch.getText().toString();
+        setObserverOnList();
+
         if(null !=searchText && !searchText.isEmpty()) {
+            showLoader(true);
             if (mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID)
                 mViewModel.getBagsById(mRemoteServices, searchText);
             else
                 mViewModel.getBagsByName(mRemoteServices, searchText);
-
-            setObserverOnList();
         }
         else{
             Toast.makeText(getContext(), "Please enter something!!", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void showLoader(boolean show) {
+        if(show){
+            mFragmentSearchBinding.contentLoader.setVisibility(View.VISIBLE);
+            mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.GONE);
+            mFragmentSearchBinding.recyclerViewItems.setVisibility(View.GONE);
+        }
+        else{
+            mFragmentSearchBinding.contentLoader.setVisibility(View.GONE);
+            mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.VISIBLE);
+            mFragmentSearchBinding.recyclerViewItems.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void setObserverOnList() {
-        mViewModel.getObserverOnList().observe((LifecycleOwner) getContext(), new Observer<List<Bag>>() {
+        final LiveData<List<Bag>> observer = mViewModel.getObserverOnList();
+
+        observer.observe((LifecycleOwner) getContext(), new Observer<List<Bag>>() {
             @Override
             public void onChanged(@Nullable List<Bag> bags) {
                 setAdapter(bags);
@@ -124,6 +141,7 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     }
 
     private void setAdapter(List<Bag> bags) {
+        showLoader(false);
         if(bags == null || bags.isEmpty()) {
             mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.VISIBLE);
             mFragmentSearchBinding.recyclerViewItems.setVisibility(View.GONE);
@@ -136,6 +154,5 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
             mFragmentSearchBinding.recyclerViewItems.setLayoutManager(new LinearLayoutManager(getContext()));
             mFragmentSearchBinding.recyclerViewItems.setAdapter(adapter);
         }
-
     }
 }
