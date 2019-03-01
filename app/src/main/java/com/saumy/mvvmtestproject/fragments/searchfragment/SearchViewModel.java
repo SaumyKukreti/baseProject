@@ -74,4 +74,26 @@ public class SearchViewModel extends ViewModel {
     public LiveData<List<Bag>> getObserverOnList() {
         return bagLiveData;
     }
+
+    public void getBagsByStatus(RemoteServices remoteServices, String status) {
+        remoteServices.getBagsByStatus(status).enqueue(new Callback<List<Bag>>() {
+            @Override
+            public void onResponse(Call<List<Bag>> call, Response<List<Bag>> response) {
+                if (null != response && null != response.body()) {
+                    bagLiveData.setValue(response.body());
+                    Log.e("TAGG", String.valueOf(response.body().size()));
+                }
+                else {
+                    Toast.makeText(MyApp.getInstance(), "Null response", Toast.LENGTH_SHORT).show();
+                    bagLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Bag>> call, Throwable t) {
+                Toast.makeText(MyApp.getInstance(), "Some error occurred!\nError description:"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                bagLiveData.setValue(null);
+            }
+        });
+    }
 }

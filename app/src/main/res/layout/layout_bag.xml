@@ -42,7 +42,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="7dp"
             android:textSize="16sp"
-            android:text="@{`Status: `+model.id}"
+            android:text="@{`Status: `+model.status}"
             tools:text="Status: Status6"/>
 
         <TextView

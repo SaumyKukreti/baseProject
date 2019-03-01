@@ -23,7 +23,9 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
+import com.saumy.mvvmtestproject.activities.BaseActivity;
 import com.saumy.mvvmtestproject.databinding.FragmentChartBinding;
+import com.saumy.mvvmtestproject.fragments.searchfragment.SearchFragment;
 import com.saumy.mvvmtestproject.models.Bag;
 import com.saumy.mvvmtestproject.retrofit.RemoteServices;
 
@@ -110,11 +112,13 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
 
     }
 
+    private ArrayList<String> keys;
+
     private void addValuesToChart(HashMap<String, Integer> map) {
         initialiseChart();
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>(map.keySet());
+        keys = new ArrayList<>(map.keySet());
 
         for(int i =0; i<keys.size();i++)
             barEntries.add(new BarEntry(i, map.get(keys.get(i))));
@@ -184,7 +188,7 @@ public class ChartFragment extends Fragment implements OnChartValueSelectedListe
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
-
+        ((BaseActivity)getContext()).pushFragment(R.id.fragment_container, SearchFragment.newInstance(null, keys.get((int) e.getX())),true,true);
     }
 
     @Override

@@ -74,7 +74,7 @@ public class FindBaggageFragment extends Fragment implements FindBaggageListener
      * @param searchById
      */
     private void startSearch(AppConstants.SEARCH_BY searchById) {
-        ((BaseActivity) getActivity()).pushFragment(R.id.fragment_container, SearchFragment.newInstance(searchById), true, true);
+        ((BaseActivity) getActivity()).pushFragment(R.id.fragment_container, SearchFragment.newInstance(searchById, null), true, true);
     }
 
     @Override

@@ -33,4 +33,7 @@ public interface RemoteServices {
 
     @GET("/bags")
     Call<List<Bag>> getAllBags();
+
+    @GET("/bags/status/{status}")
+    Call<List<Bag>> getBagsByStatus(@Path("status") String status);
 }

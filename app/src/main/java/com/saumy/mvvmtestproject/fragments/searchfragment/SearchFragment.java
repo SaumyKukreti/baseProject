@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.saumy.mvvmtestproject.MyApp;
 import com.saumy.mvvmtestproject.R;
+import com.saumy.mvvmtestproject.Utils;
 import com.saumy.mvvmtestproject.constants.AppConstants;
 import com.saumy.mvvmtestproject.databinding.FragmentSearchBinding;
 import com.saumy.mvvmtestproject.models.Bag;
@@ -35,6 +36,9 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     private FragmentSearchBinding mFragmentSearchBinding;
     private AppConstants.SEARCH_BY mSearchBy;
     private SearchViewModel mViewModel;
+    private String mStatusSearch = null;
+    private static final String STATUS_KEY = "Status_key";
+
 
     public SearchFragment() {
         // Required empty public constructor
@@ -44,23 +48,31 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     RemoteServices mRemoteServices;
 
 
-    public static SearchFragment newInstance(AppConstants.SEARCH_BY search_by) {
+    public static SearchFragment newInstance(AppConstants.SEARCH_BY search_by, String status) {
         SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
         args.putSerializable(AppConstants.searchByKey, search_by);
+        if (Utils.isNotEmpty(status)) args.putString(STATUS_KEY, status);
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mSearchBy = (AppConstants.SEARCH_BY) getArguments().getSerializable(AppConstants.searchByKey);
+            if (getArguments().containsKey(STATUS_KEY)) {
+                mStatusSearch = getArguments().getString(STATUS_KEY);
+            }
+            else{
+                mSearchBy = (AppConstants.SEARCH_BY) getArguments().getSerializable(AppConstants.searchByKey);
+            }
         }
 
         ((MyApp) getActivity().getApplication()).getComponent().inject(this);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +88,21 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUpViews();
+        if(Utils.isNotEmpty(mStatusSearch)){
+            //Hide edit text
+            setUpViewsForStatusSearch();
+        }
+        else{
+            setUpViews();
+        }
+    }
+
+    private void setUpViewsForStatusSearch() {
+        mFragmentSearchBinding.editSearch.setVisibility(View.GONE);
+        mFragmentSearchBinding.buttonSearch.setVisibility(View.GONE);
+
+        setObserverOnList();
+        mViewModel.getBagsByStatus(mRemoteServices, mStatusSearch);
     }
 
     private void setUpViews() {
@@ -88,7 +114,7 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
             }
         });
 
-        if(mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID){
+        if (mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID) {
             mFragmentSearchBinding.editSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
         }
     }
@@ -110,25 +136,23 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
         String searchText = mFragmentSearchBinding.editSearch.getText().toString();
         setObserverOnList();
 
-        if(null !=searchText && !searchText.isEmpty()) {
+        if (null != searchText && !searchText.isEmpty()) {
             showLoader(true);
             if (mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID)
                 mViewModel.getBagsById(mRemoteServices, searchText);
             else
                 mViewModel.getBagsByName(mRemoteServices, searchText);
-        }
-        else{
+        } else {
             Toast.makeText(getContext(), "Please enter something!!", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void showLoader(boolean show) {
-        if(show){
+        if (show) {
             mFragmentSearchBinding.contentLoader.setVisibility(View.VISIBLE);
             mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.GONE);
             mFragmentSearchBinding.recyclerViewItems.setVisibility(View.GONE);
-        }
-        else{
+        } else {
             mFragmentSearchBinding.contentLoader.setVisibility(View.GONE);
             mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.VISIBLE);
             mFragmentSearchBinding.recyclerViewItems.setVisibility(View.VISIBLE);
@@ -148,12 +172,11 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
 
     private void setAdapter(List<Bag> bags) {
         showLoader(false);
-        if(bags == null || bags.isEmpty()) {
+        if (bags == null || bags.isEmpty()) {
             mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.VISIBLE);
             mFragmentSearchBinding.recyclerViewItems.setVisibility(View.GONE);
             mFragmentSearchBinding.textNoResultAvailable.setText("No Results Found!!");
-        }
-        else{
+        } else {
             mFragmentSearchBinding.textNoResultAvailable.setVisibility(View.GONE);
             SearchResultsAdapter adapter = new SearchResultsAdapter(getContext(), bags);
             mFragmentSearchBinding.recyclerViewItems.setVisibility(View.VISIBLE);
