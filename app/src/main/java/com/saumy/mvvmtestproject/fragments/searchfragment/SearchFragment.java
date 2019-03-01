@@ -9,7 +9,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +87,10 @@ public class SearchFragment extends Fragment implements SearchFragmentListener {
                 return true;
             }
         });
+
+        if(mSearchBy == AppConstants.SEARCH_BY.SEARCH_BY_ID){
+            mFragmentSearchBinding.editSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
+        }
     }
 
 
