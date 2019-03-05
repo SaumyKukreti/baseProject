@@ -1,6 +1,8 @@
 package com.saumy.mvvmtestproject.fragments.dashboardfragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
 import com.saumy.mvvmtestproject.fragments.ChartFragment;
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
 import com.saumy.mvvmtestproject.fragments.managefragment.ManageFragment;
+import com.saumy.mvvmtestproject.services.MyForegroundService;
 
 public class DashboardFragment extends Fragment implements DashboardFragmentListener {
 
@@ -49,7 +52,6 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         mFragmentDashboardBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_dashboard, container, false);
 
@@ -60,16 +62,25 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
     @Override
     public void findBaggageClicked() {
         //Going to findBaggageFragment
-        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container,FindBaggageFragment.newInstance(),true,true);
+        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, FindBaggageFragment.newInstance(), true, true);
     }
 
     @Override
     public void manageFragmentClicked() {
-        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ManageFragment.newInstance(),true,true);
+        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ManageFragment.newInstance(), true, true);
     }
 
     @Override
     public void chartFragmentClicked() {
-        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ChartFragment.newInstance(),true,true);
+        ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ChartFragment.newInstance(), true, true);
+    }
+
+    @Override
+    public void startServiceClicked() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getContext().startForegroundService(new Intent(getContext(), MyForegroundService.class));
+        } else {
+            getContext().startService(new Intent(getContext(), MyForegroundService.class));
+        }
     }
 }

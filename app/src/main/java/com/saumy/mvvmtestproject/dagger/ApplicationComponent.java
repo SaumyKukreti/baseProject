@@ -5,6 +5,7 @@ import com.saumy.mvvmtestproject.fragments.ChartFragment;
 import com.saumy.mvvmtestproject.fragments.findbaggagefragment.FindBaggageFragment;
 import com.saumy.mvvmtestproject.fragments.managefragment.ManageFragment;
 import com.saumy.mvvmtestproject.fragments.searchfragment.SearchFragment;
+import com.saumy.mvvmtestproject.services.MyForegroundService;
 
 import javax.inject.Singleton;
 
@@ -23,4 +24,5 @@ public interface ApplicationComponent {
     void inject(NavigationDrawerActivity navigationDrawerActivity);
     void inject(ManageFragment manageFragment);
     void inject(ChartFragment chartFragment);
+    void inject(MyForegroundService myForegroundService);
 }
