@@ -1,11 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
+<layout>
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.saumy.mvvmtestproject.activities.ImageFragmentListener"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/image_departure"
-        android:scaleType="fitXY"/>
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/image_departure"/>
+
+        <Button
+            android:id="@+id/button_one_one"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/black_outline"
+            android:onClick="@{() -> listener.oneOneClicked()}"
+            app:layout_constraintBottom_toTopOf="@id/button_two_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_two"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/button_one_two"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/black_outline"
+            android:onClick="@{() -> listener.oneTwoClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_one_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_three"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_one"
+            app:layout_constraintTop_toTopOf="@id/button_one_one"/>
+
+        <Button
+            android:id="@+id/button_one_three"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_one_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_four"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_two"
+            app:layout_constraintTop_toTopOf="@id/button_one_one"/>
+
+        <Button
+            android:id="@+id/button_one_four"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_one_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_five"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_three"
+            app:layout_constraintTop_toTopOf="@id/button_one_one"/>
+
+        <Button
+            android:id="@+id/button_one_five"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_one_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_six"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_four"
+            app:layout_constraintTop_toTopOf="@id/button_one_one"/>
+
+        <Button
+            android:id="@+id/button_one_six"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_one_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_seven"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_five"
+            app:layout_constraintTop_toTopOf="@id/button_one_one"/>
+
+        <Button
+            android:id="@+id/button_one_seven"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_one_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_six"
+            app:layout_constraintTop_toTopOf="@id/button_one_one"/>
+
+
+        <Button
+            android:id="@+id/button_two_one"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.twoOneClicked()}"
+            app:layout_constraintBottom_toTopOf="@id/button_three_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_two"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_one_one"/>
+
+        <Button
+            android:id="@+id/button_two_two"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.twoTwoClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_two_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_three"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_one"
+            app:layout_constraintTop_toTopOf="@id/button_two_one"/>
+
+        <Button
+            android:id="@+id/button_two_three"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.twoThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_two_one"
+            app:layout_constraintEnd_toStartOf="@id/button_two_four"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_two"
+            app:layout_constraintTop_toTopOf="@id/button_two_one"/>
+
+        <Button
+            android:id="@+id/button_two_four"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_two_one"
+            app:layout_constraintEnd_toStartOf="@id/button_two_five"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_two_three"
+            app:layout_constraintTop_toTopOf="@id/button_two_one"/>
+
+        <Button
+            android:id="@+id/button_two_five"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_two_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_six"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_four"
+            app:layout_constraintTop_toTopOf="@id/button_two_one"/>
+
+        <Button
+            android:id="@+id/button_two_six"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_two_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_seven"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_five"
+            app:layout_constraintTop_toTopOf="@id/button_two_one"/>
+
+        <Button
+            android:id="@+id/button_two_seven"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_two_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_six"
+            app:layout_constraintTop_toTopOf="@id/button_two_one"/>
+
+
+
+        <Button
+            android:id="@+id/button_three_one"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.threeOneClicked()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_one_two"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_two_one"/>
+
+        <Button
+            android:id="@+id/button_three_two"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+
+            android:onClick="@{() -> listener.threeTwoClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_three_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_three"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_one"
+            app:layout_constraintTop_toTopOf="@id/button_three_one"/>
+
+        <Button
+            android:id="@+id/button_three_three"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+
+            android:onClick="@{() -> listener.threeThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_three_one"
+            app:layout_constraintEnd_toStartOf="@id/button_three_four"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_two"
+            app:layout_constraintTop_toTopOf="@id/button_three_one"/>
+
+        <Button
+            android:id="@+id/button_three_four"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_three_one"
+            app:layout_constraintEnd_toStartOf="@id/button_two_five"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_two_three"
+            app:layout_constraintTop_toTopOf="@id/button_three_one"/>
+
+        <Button
+            android:id="@+id/button_three_five"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_three_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_six"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_four"
+            app:layout_constraintTop_toTopOf="@id/button_three_one"/>
+
+        <Button
+            android:id="@+id/button_three_six"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_three_one"
+            app:layout_constraintEnd_toStartOf="@id/button_one_seven"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_five"
+            app:layout_constraintTop_toTopOf="@id/button_three_one"/>
+
+        <Button
+            android:id="@+id/button_three_seven"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> listener.oneThreeClicked()}"
+            app:layout_constraintBottom_toBottomOf="@id/button_three_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_one_six"
+            app:layout_constraintTop_toTopOf="@id/button_three_one"/>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
