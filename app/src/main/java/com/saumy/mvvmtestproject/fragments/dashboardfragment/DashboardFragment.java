@@ -1,5 +1,6 @@
 package com.saumy.mvvmtestproject.fragments.dashboardfragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.saumy.mvvmtestproject.R;
 import com.saumy.mvvmtestproject.activities.BaseActivity;
+import com.saumy.mvvmtestproject.activities.ImageActivity;
 import com.saumy.mvvmtestproject.activities.NavigationDrawerActivity;
 import com.saumy.mvvmtestproject.databinding.FragmentDashboardBinding;
 import com.saumy.mvvmtestproject.fragments.ChartFragment;
@@ -71,5 +73,10 @@ public class DashboardFragment extends Fragment implements DashboardFragmentList
     @Override
     public void chartFragmentClicked() {
         ((BaseActivity) getContext()).pushFragment(R.id.fragment_container, ChartFragment.newInstance(),true,true);
+    }
+
+    @Override
+    public void scadaClicked() {
+        startActivity(new Intent(getContext(), ImageActivity.class));
     }
 }

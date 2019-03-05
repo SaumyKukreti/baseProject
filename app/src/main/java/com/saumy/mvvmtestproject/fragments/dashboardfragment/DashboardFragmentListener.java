@@ -8,4 +8,5 @@ public interface DashboardFragmentListener {
     void findBaggageClicked();
     void manageFragmentClicked();
     void chartFragmentClicked();
+    void scadaClicked();
 }
