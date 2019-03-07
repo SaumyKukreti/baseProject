@@ -5,23 +5,12 @@ package com.saumy.mvvmtestproject.activities;
  */
 
 public interface ImageFragmentListener {
-
-    void oneOneClicked();
-
-    void oneTwoClicked();
-
-    void oneThreeClicked();
-
-    void twoOneClicked();
-
-    void twoTwoClicked();
-
-    void twoThreeClicked();
-
-    void threeOneClicked();
-
-    void threeTwoClicked();
-
-    void threeThreeClicked();
-
+    void makeUpClicked();
+    void sorterOneClicked();
+    void sorterTwoClicked();
+    void lineClicked();
+    void metroClicked();
+    void buttonLevelCliked();
+    void tunnelClicked();
+    void checkInClicked();
 }
